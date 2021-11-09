@@ -1,0 +1,7 @@
+.header {
+    box-sizing: content-box;
+    max-width: 880px;
+    margin: 0 auto 35px;
+    border-bottom: 1px solid #545454;
+    display: flex;
+}
