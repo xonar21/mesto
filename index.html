@@ -7,12 +7,22 @@
   <link rel="stylesheet" href="./page/index.css">
 </head>
 <body>
+  
   <div class="page">
     <header class="header">
       <img class="header__logo" src="./images/Vector.svg" alt="место">
     </header>
+    <form class="form">
+      <h2 class="form__title">Редактировать профиль</h2>
+      <input class="form__name" type="text" value="Жак-Ив Кусто">
+      <input class="form__subname" type="text" value="Исследователь океана">
+      <button class="form__button">Сохранить</button>
+      <img class="form__exit" src="./images/Close_Icon.png" alt="выход">
+    </form>
+    <div class="overlay"></div>
+    
     <div class="main">
-      <div class="profile">
+      <section class="profile">
         <img class="profile__avatar" src="./images/jak.png" alt="аватар">
         <div class="profile__info">
           <div class="profile__info-text">
@@ -20,14 +30,15 @@
             <h2 class="profile__subname">Исследователь океана</h2>
           </div>
           <button class="profile__edit-button">
-            <img class="profile__edit-button-image" src="./images/pen.svg" alt="редактировать"></img>
+            <img class="profile__edit-button-image" src="./images/pen.svg" alt="редактировать">
           </button>
         </div>
         <button class="profile__add-button">
           <img class="profile__add-button-image" src="./images/add.svg" alt="добавить">
         </button>
-      </div>
-      <div class="elements">
+      </section>
+        
+      <section class="elements">
 
         <div class="element">
           <img class="element__image" src="./images/karach.png" alt="Карачаевск">
@@ -73,14 +84,17 @@
       <div class="element">
         <img class="element__image" src="./images/karach.png" alt="Карачаевск">
         <div class="element__group">
-          <p class="element__title">Карачаево-Ч...</p>
+          <p class="element__title">Карачаево-Черкессия</p>
           <img class="element__like" src="./images/like.svg" alt="нравится">
         </div>
       </div>
+
+      </section>
     </div>
     <footer class="footer">
-
+      © 2020 Mesto Russia
     </footer>
   </div>
+    <script src="./script/script.js"></script>
 </body>
 </html>

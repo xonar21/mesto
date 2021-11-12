@@ -6,4 +6,5 @@
     padding: 25px 15px 31px 21px;
     display: flex;
     justify-content: space-between;
+    max-width: 282px;
 }
