@@ -1,5 +1,6 @@
 .form__title {
-    margin: 0 0 54px;
+    margin: 34px 0 54px;
+    margin-left: 36px;
     color: #000000;
     font-weight: 900;
     font-size: 24px;
@@ -10,6 +11,7 @@
     .form__title {
         font-size: 18px;
         line-height: 22px;
-        margin-bottom: 75px;
+        max-width: 238px;
+        margin: 25px auto 75px;
     }
 }
