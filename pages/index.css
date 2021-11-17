@@ -18,14 +18,13 @@
 /*profile*/
 /*form*/
 @import url(../blocks/pop-up/pop-up.css);
-@import url(../blocks/pop-up/_display_flex/pop-up_display_flex.css);
-@import url(../blocks/form-container/form-container.css);
-@import url(../blocks/form-container/_display_block/form-container_display_block.css);
+@import url(../blocks/pop-up/_opened/pop-up_opened.css);
+@import url(../blocks/pop-up/__container/pop-up__container.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__button/form__button.css);
-@import url(../blocks/exit/exit.css);
+@import url(../blocks/pop-up/__exit/pop-up__exit.css);
 /*form*/
 /*elements*/
 @import url(../blocks/elements/elements.css);

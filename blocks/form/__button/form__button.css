@@ -10,6 +10,7 @@
     max-width: 358px;
     margin: 18px auto 37px;
     transition: opacity 0.2s ease-in-out;
+    border-radius: 2px;
 }
 
 .form__button:hover {

@@ -23,9 +23,9 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__subname">Исследователь океана</p>
           </div>
-          <button class="profile__edit-button" type="button"></button>
+          <button class="profile__edit-button" type="button" aria-label="Изменить"></button>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button class="profile__add-button" type="button" aria-label="Создать"></button>
       </section>
         
       <section class="elements">
@@ -34,7 +34,7 @@
           <img class="element__image" src="./images/karach.png" alt="Карачаевск">
           <div class="element__group">
             <h2 class="element__title">Карачаевск</h2>
-            <button class="element__like" type="button"></button>
+            <button class="element__like" type="button" aria-label="Нравится"></button>
           </div>
         </div>
 
@@ -42,7 +42,7 @@
           <img class="element__image" src="./images/gora.png" alt="Гора Эльбрус">
           <div class="element__group">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button"></button>
+            <button class="element__like" type="button" aria-label="Нравится"></button>
           </div>
         </div>
 
@@ -50,7 +50,7 @@
           <img class="element__image" src="./images/dombay.png" alt="Домбай">
           <div class="element__group">
             <h2 class="element__title">Домбай</h2>
-            <button class="element__like" type="button"></button>
+            <button class="element__like" type="button" aria-label="Нравится"></button>
           </div>
         </div>
 
@@ -58,7 +58,7 @@
           <img class="element__image" src="./images/gora.png" alt="Гора Эльбрус">
           <div class="element__group">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button"></button>
+            <button class="element__like" type="button" aria-label="Нравится"></button>
           </div>
         </div>
       
@@ -67,7 +67,7 @@
         <img class="element__image" src="./images/dombay.png" alt="Домбай">
         <div class="element__group">
           <h2 class="element__title">Домбай</h2>
-          <button class="element__like" type="button"></button>
+          <button class="element__like" type="button" aria-label="Нравится"></button>
         </div>
       </div>
 
@@ -75,7 +75,7 @@
         <img class="element__image" src="./images/karach.png" alt="Карачаевск">
         <div class="element__group">
           <h2 class="element__title">Карачаево-Черкессия</h2>
-          <button class="element__like" type="button"></button>
+          <button class="element__like" type="button" aria-label="Нравится"></button>
         </div>
       </div>
 
@@ -85,14 +85,14 @@
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
     <div class="pop-up">
-      <div class="form-container">
-        <form class="form">
+      <div class="pop-up__container">
+        <form class="form" name="form">
           <h2 class="form__title">Редактировать профиль</h2>
           <input class="form__input form__input_profile_name" type="text"  name="name" value="Жак-Ив Кусто" placeholder="введите имя" required>
           <input class="form__input form__input_profile_subname" type="text" name="subname" value="Исследователь океана" placeholder="введите описание" required>
           <button class="form__button" type="submit">Сохранить</button>
         </form>
-        <button class="exit" type="button"></button>
+        <button class="pop-up__exit" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
   </div>

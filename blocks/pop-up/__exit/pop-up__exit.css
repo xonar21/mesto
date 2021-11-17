@@ -1,8 +1,8 @@
-.exit {
+.pop-up__exit {
     position: absolute;
     top: -44px;
     right: -44px;
-    background-image: url(../../images/close_icon.svg);
+    background-image: url(../../../images/close_icon.svg);
     width: 32px;
     height: 32px;
     background-repeat: no-repeat;
@@ -11,13 +11,13 @@
     transition: opacity 0.2s ease-in-out;
 }
 
-.exit:hover {
+.pop-up__exit:hover {
     cursor: pointer;
     opacity: 0.6;
 }
 
 @media screen and (max-width: 767px) {
-    .exit {
+    .pop-up__exit {
         width: 20px;
         height: 20px;
         background-size: 20px 20px;
