@@ -19,20 +19,27 @@
 /*form*/
 @import url(../blocks/pop-up/pop-up.css);
 @import url(../blocks/pop-up/_opened/pop-up_opened.css);
+
 @import url(../blocks/pop-up/__container/pop-up__container.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__button/form__button.css);
 @import url(../blocks/pop-up/__exit/pop-up__exit.css);
+@import url(../blocks/image-popUp/image-popUp.css);
+@import url(../blocks/pop-up/_image/pop-up_image.css);
+@import url(../blocks/image-popUp/__title/image-popUp__title.css);
+@import url(../blocks/pop-up/_animation/pop-up_animation.css);
 /*form*/
 /*elements*/
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__delete-card/element__delete-card.css);
 @import url(../blocks/element/__group/element__group.css);
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like/_active/element__like_active.css);
 /*elements*/
 /*footer*/
 @import url(../blocks/footer/footer.css);

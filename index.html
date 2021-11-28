@@ -29,15 +29,15 @@
       </section>
         
       <section class="elements">
-
-        <div class="element">
-          <img class="element__image" src="./images/karach.png" alt="Карачаевск">
-          <div class="element__group">
-            <h2 class="element__title">Карачаевск</h2>
-            <button class="element__like" type="button" aria-label="Нравится"></button>
+        
+          <!-- <div class="element">
+            <img class="element__image" src="./images/karach.png" alt="Карачаевск">
+            <div class="element__group">
+              <h2 class="element__title">Карачаевск</h2>
+              <button class="element__like" type="button" aria-label="Нравится"></button>
+            </div>
           </div>
-        </div>
-
+          
         <div class="element">
           <img class="element__image" src="./images/gora.png" alt="Гора Эльбрус">
           <div class="element__group">
@@ -70,30 +70,60 @@
           <button class="element__like" type="button" aria-label="Нравится"></button>
         </div>
       </div>
-
+      
       <div class="element">
         <img class="element__image" src="./images/karach.png" alt="Карачаевск">
         <div class="element__group">
           <h2 class="element__title">Карачаево-Черкессия</h2>
           <button class="element__like" type="button" aria-label="Нравится"></button>
         </div>
-      </div>
-
+      </div> -->
+      
       </section>
     </main>
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
+    <template id="add">
+      <div class="element">
+        <button class="element__delete-card"></button>
+        <img class="element__image">
+        <div class="element__group">
+          <h2 class="element__title"></h2>
+          <button class="element__like" type="button" aria-label="Нравится"></button>
+        </div>
+      </div>
+    </template>
     <div class="pop-up">
       <div class="pop-up__container">
         <form class="form" name="edit-form">
           <h2 class="form__title">Редактировать профиль</h2>
-          <input class="form__input form__input_profile_name" type="text"  name="name" value="Жак-Ив Кусто" placeholder="введите имя" required>
-          <input class="form__input form__input_profile_subname" type="text" name="subname" value="Исследователь океана" placeholder="введите описание" required>
+          <input class="form__input form__input_profile_name" type="text"  name="name" value="Жак-Ив Кусто" placeholder="Введите имя" required>
+          <input class="form__input form__input_profile_subname" type="text" name="subname" value="Исследователь океана" placeholder="Введите описание" required>
           <button class="form__button" type="submit">Сохранить</button>
         </form>
         <button class="pop-up__exit" type="button" aria-label="Закрыть"></button>
       </div>
+    </div>
+    <div class="pop-up">
+      <div class="pop-up__container">
+        <form class="form" name="edit-form">
+          <h2 class="form__title">Новое место</h2>
+          <input class="form__input form__input_profile_name" type="text"  name="title" placeholder="Название" required>
+          <input class="form__input form__input_profile_subname" type="text" name="link" placeholder="Ссылка на картинку" required>
+          <button class="form__button" type="submit">Сохранить</button>
+        </form>
+        <button class="pop-up__exit" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
+    <div class="pop-up">
+      <div class="pop-up_image pop-up__container ">
+        <img class="image-popUp">
+        <p class="image-popUp__title"></p>
+        <button class="pop-up__exit" type="button" aria-label="Закрыть"></button>
+      </div>
+      
     </div>
   </div>
     <script src="./script/script.js"></script>
