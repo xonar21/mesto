@@ -82,10 +82,14 @@ function formSubmitHandler (evt) {
     exit();
 }
 //прогрузка карточек
+
+
+
+
+console.log(userAdd.querySelector('.element__image').src);
+
 for (let l = 0; l < initialCards.length; l++) {
-  let mestoAdd = document.querySelector('#add').content;
-  let elements = document.querySelector('.elements');
-  let userAdd = mestoAdd.querySelector('.element').cloneNode(true);
+  let userAdd = mestoAdd.cloneNode(true);
   userAdd.querySelector('.element__image').src = initialCards[l].link;
   userAdd.querySelector('.element__title').textContent = initialCards[l].name;
   elements.append(userAdd);
