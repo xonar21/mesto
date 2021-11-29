@@ -1,4 +1,4 @@
-.pop-up_image {
+.pop-up__container_image {
     display: flex;
     flex-direction: column;
     width: max-content;
