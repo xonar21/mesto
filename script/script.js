@@ -55,9 +55,7 @@ function open() {
 }
 
 function openAdd() {
-
     popUp[1].classList.add('pop-up_opened');
-
 }
 //закрытие попапа
 function exit() {
@@ -70,9 +68,6 @@ function exitAdd() {
     popUp[1].classList.remove('pop-up_opened');
 
 }
-
-
-
 //сохранение формы
 function formSubmitHandler (evt) {
 
@@ -82,46 +77,42 @@ function formSubmitHandler (evt) {
     exit();
 }
 //прогрузка карточек
-
-
-
-
-console.log(userAdd.querySelector('.element__image').src);
-
-for (let l = 0; l < initialCards.length; l++) {
+initialCards.forEach( function(item) {
   let userAdd = mestoAdd.cloneNode(true);
-  userAdd.querySelector('.element__image').src = initialCards[l].link;
-  userAdd.querySelector('.element__title').textContent = initialCards[l].name;
+  userAdd.querySelector('.element__image').src = item.link;
+  userAdd.querySelector('.element__title').textContent = item.name;
   elements.append(userAdd);
-  }
-
+});
 //like
 let element = document.querySelectorAll('.element');
 let elem = Array.from(element);
+
+
+
 let likes = document.querySelectorAll('.element__like');
-for (let i = 0; i < element.length; i++) {
-  likes[i].addEventListener('click', function (evt) {
+
+  likes.forEach( function(item) {
+    item.addEventListener('click', function (evt) {
       evt.target.classList.toggle('element__like_active');
     } );
+  });
 
-}
+ 
+
 //добавление карточек
 function formSubmitHandlerAdd (evt) {
-  const mestoAdd = document.querySelector('#add').content;
-  let elements = document.querySelector('.elements');
   let userAdd = mestoAdd.querySelector('.element').cloneNode(true);
   evt.preventDefault();
   userAdd.querySelector('.element__image').src = jobInput[1].value;
   userAdd.querySelector('.element__title').textContent = nameInput[1].value;
-  
   elements.prepend(userAdd);
   elem.push(userAdd);
   nameInput[1].value = '';
   jobInput[1].value = '';
-  
   document.querySelector('.element__like').addEventListener ('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
   } );
+
   document.querySelector('.element__delete-card').addEventListener('click', function() {
     const listItem = document.querySelector('.element__delete-card').closest('.element');
     listItem.remove();

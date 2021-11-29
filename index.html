@@ -29,71 +29,22 @@
       </section>
         
       <section class="elements">
-        
-          <!-- <div class="element">
-            <img class="element__image" src="./images/karach.png" alt="Карачаевск">
+        <template id="add">
+          <div class="element">
+            <button class="element__delete-card"></button>
+            <img class="element__image">
             <div class="element__group">
-              <h2 class="element__title">Карачаевск</h2>
+              <h2 class="element__title"></h2>
               <button class="element__like" type="button" aria-label="Нравится"></button>
             </div>
           </div>
-          
-        <div class="element">
-          <img class="element__image" src="./images/gora.png" alt="Гора Эльбрус">
-          <div class="element__group">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button" aria-label="Нравится"></button>
-          </div>
-        </div>
-
-        <div class="element">
-          <img class="element__image" src="./images/dombay.png" alt="Домбай">
-          <div class="element__group">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__like" type="button" aria-label="Нравится"></button>
-          </div>
-        </div>
-
-        <div class="element">
-          <img class="element__image" src="./images/gora.png" alt="Гора Эльбрус">
-          <div class="element__group">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like" type="button" aria-label="Нравится"></button>
-          </div>
-        </div>
-      
-
-      <div class="element">
-        <img class="element__image" src="./images/dombay.png" alt="Домбай">
-        <div class="element__group">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__like" type="button" aria-label="Нравится"></button>
-        </div>
-      </div>
-      
-      <div class="element">
-        <img class="element__image" src="./images/karach.png" alt="Карачаевск">
-        <div class="element__group">
-          <h2 class="element__title">Карачаево-Черкессия</h2>
-          <button class="element__like" type="button" aria-label="Нравится"></button>
-        </div>
-      </div> -->
-      
+        </template>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
-    <template id="add">
-      <div class="element">
-        <button class="element__delete-card"></button>
-        <img class="element__image">
-        <div class="element__group">
-          <h2 class="element__title"></h2>
-          <button class="element__like" type="button" aria-label="Нравится"></button>
-        </div>
-      </div>
-    </template>
+    
     <div class="pop-up">
       <div class="pop-up__container">
         <form class="form" name="edit-form">
@@ -119,7 +70,7 @@
 
     <div class="pop-up">
       <div class="pop-up_image pop-up__container ">
-        <img class="image-popUp">
+        <img class="image-popUp" src="." alt="ваша картинка">
         <p class="image-popUp__title"></p>
         <button class="pop-up__exit" type="button" aria-label="Закрыть"></button>
       </div>
