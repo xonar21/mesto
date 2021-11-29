@@ -146,7 +146,7 @@ formElement[1].addEventListener('submit', formSubmitHandlerAdd);
 let image = document.querySelectorAll('.element__image');
 let titleImage = document.querySelectorAll('.element__title');
 let imagePopup = document.querySelector('.image');
-let imagepopUptitle = document.querySelector('.image__title');
+let imagepopUptitle = document.querySelector('.title');
 for (let l = 0; l < element.length; l++) {
   image[l].addEventListener('click', function () {
   imagePopup.src = image[l].src;
