@@ -5,9 +5,9 @@ let popupImg = document.querySelector('.pop-up_img');
 let formProfile = document.querySelector('.form_profile');
 let formAdd = document.querySelector('.form_add');
 let editBtn = document.querySelector('.profile__edit-button');
-let closeProfile = document.querySelector('.pop-up__exit_profile');
-let closeAdd = document.querySelector('.pop-up__exit_add');
-let closeImg = document.querySelector('.pop-up__exit_img');
+let closeProfileBtn = document.querySelector('.pop-up__exit_profile');
+let closeAddBtn = document.querySelector('.pop-up__exit_add');
+let closeImgBtn = document.querySelector('.pop-up__exit_img');
 let imagePopup = document.querySelector('.image');
 let imagepopUptitle = document.querySelector('.title');
 const profileName = document.querySelector('.profile__name');
@@ -16,7 +16,7 @@ let nameInput = document.querySelector('.form__input_profile_name');
 let subnameInput = document.querySelector('.form__input_profile_subname');
 let addName = document.querySelector('.form__input_add_name');
 let addUrl = document.querySelector('.form__input_add_url');
-let add = document.querySelector('.profile__add-button');
+let addBtn = document.querySelector('.profile__add-button');
 let elementTitle = document.querySelectorAll('.element__title');
 let elementImage = document.querySelectorAll('.element__image');
 let elements = document.querySelector('.elements');
@@ -134,11 +134,11 @@ function formSubmitHandlerAdd (evt) {
 }
 
 editBtn.addEventListener('click', openProfilePopup);
-add.addEventListener('click', openAdd);
-closeProfile.addEventListener('click', exitProfile);
-closeAdd.addEventListener('click', exitAdd);
+addBtn.addEventListener('click', openAdd);
+closeProfileBtn.addEventListener('click', exitProfile);
+closeAddBtn.addEventListener('click', exitAdd);
 formProfile.addEventListener('submit', hanldeProfileSubmit);
 formAdd.addEventListener('submit', formSubmitHandlerAdd);
-closeImg.addEventListener('click', function () {
+closeImgBtn.addEventListener('click', function () {
   popupImg.classList.remove('pop-up_opened');
 });
