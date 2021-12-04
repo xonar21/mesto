@@ -125,6 +125,7 @@ function formSubmitHandlerAdd (evt) {
   evt.preventDefault();
   let card = createCard();
   card.querySelector('.element__image').src = addUrl.value;
+  card.querySelector('.element__image').alt = 'ваша картинка';
   card.querySelector('.element__title').textContent = addName.value;
   elements.prepend(card);
   addName.value = '';
