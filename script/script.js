@@ -1,25 +1,23 @@
-let popup = document.querySelector('.pop-up');
-let popupProfile = document.querySelector('.pop-up_profile_popup');
-let popupAdd = document.querySelector('.pop-up_add');
-let popupImg = document.querySelector('.pop-up_img');
-let formProfile = document.querySelector('.form_profile');
-let formAdd = document.querySelector('.form_add');
-let editBtn = document.querySelector('.profile__edit-button');
-let closeProfileBtn = document.querySelector('.pop-up__exit_profile');
-let closeAddBtn = document.querySelector('.pop-up__exit_add');
-let closeImgBtn = document.querySelector('.pop-up__exit_img');
-let imagePopup = document.querySelector('.image');
-let imagepopUptitle = document.querySelector('.title');
+const popup = document.querySelector('.pop-up');
+const popupProfile = document.querySelector('.pop-up_profile_popup');
+const popupAdd = document.querySelector('.pop-up_add');
+const popupImg = document.querySelector('.pop-up_img');
+const formProfile = document.querySelector('.form_profile');
+const formAdd = document.querySelector('.form_add');
+const editBtn = document.querySelector('.profile__edit-button');
+const closeProfileBtn = document.querySelector('.pop-up__exit_profile');
+const closeAddBtn = document.querySelector('.pop-up__exit_add');
+const closeImgBtn = document.querySelector('.pop-up__exit_img');
+const imagePopup = document.querySelector('.image');
+const imagepopUptitle = document.querySelector('.title');
 const profileName = document.querySelector('.profile__name');
 const profileSubName = document.querySelector('.profile__subname');
-let nameInput = document.querySelector('.form__input_profile_name');
-let subnameInput = document.querySelector('.form__input_profile_subname');
-let addName = document.querySelector('.form__input_add_name');
-let addUrl = document.querySelector('.form__input_add_url');
-let addBtn = document.querySelector('.profile__add-button');
-let elementTitle = document.querySelectorAll('.element__title');
-let elementImage = document.querySelectorAll('.element__image');
-let elements = document.querySelector('.elements');
+const nameInput = document.querySelector('.form__input_profile_name');
+const subnameInput = document.querySelector('.form__input_profile_subname');
+const addName = document.querySelector('.form__input_add_name');
+const addUrl = document.querySelector('.form__input_add_url');
+const addBtn = document.querySelector('.profile__add-button');
+const elements = document.querySelector('.elements');
 
 //массив карточек
 const initialCards = [
@@ -85,13 +83,17 @@ function hanldeProfileSubmit (evt) {
     closePopup(popup);
 }
 //cоздание карточки
-function createCard() {
+function createCard(link, name, alt) {
   const cardTemplate = document.querySelector('#add').content;
-  let userAdd = cardTemplate.querySelector('.element').cloneNode(true);
-  let del = userAdd.querySelector('.element__delete-card');
-  let likes = userAdd.querySelector('.element__like');
-  let img = userAdd.querySelector('.element__image');
-  let imgTitle = userAdd.querySelector('.element__title');
+  const userAdd = cardTemplate.querySelector('.element').cloneNode(true);
+  const del = userAdd.querySelector('.element__delete-card');
+  const likes = userAdd.querySelector('.element__like');
+  const img = userAdd.querySelector('.element__image');
+  const imgTitle = userAdd.querySelector('.element__title');
+
+  img.src = link;
+  img.alt = alt;
+  imgTitle.textContent = name;
 
   img.addEventListener('click', function() {
     imagePopup.src = img.src;
@@ -111,19 +113,17 @@ function createCard() {
   return userAdd;
 }
 
+
 //загрузка карточек
 initialCards.forEach( function(item) {
-  let card = createCard();
-  card.querySelector('.element__image').src = item.link;
-  card.querySelector('.element__image').alt = item.alt;
-  card.querySelector('.element__title').textContent = item.name;
+  const card = createCard(item.link, item.name, item.alt);
   elements.append(card);
 });
 
 //добавление карточек
 function formSubmitHandlerAdd (evt) {
   evt.preventDefault();
-  let card = createCard();
+  const card = createCard();
   card.querySelector('.element__image').src = addUrl.value;
   card.querySelector('.element__image').alt = 'ваша картинка';
   card.querySelector('.element__title').textContent = addName.value;
