@@ -75,6 +75,10 @@ function exitProfile() {
 function exitAdd() {
   closePopup(popupAdd);
 }
+
+function exitImg() {
+  closePopup(popupImg);
+}
 //сохранение формы
 function hanldeProfileSubmit (evt) {
     evt.preventDefault();
@@ -97,10 +101,13 @@ function createCard(link, name, alt) {
 
   img.addEventListener('click', function() {
     imagePopup.src = img.src;
+    imagePopup.alt = img.alt;
     imagepopUptitle.textContent = imgTitle.textContent;
     openPopup(popupImg);
   });
   
+  closeImgBtn.addEventListener('click', exitImg);
+
   likes.addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
   } );
@@ -123,10 +130,8 @@ initialCards.forEach( function(item) {
 //добавление карточек
 function formSubmitHandlerAdd (evt) {
   evt.preventDefault();
-  const card = createCard();
-  card.querySelector('.element__image').src = addUrl.value;
-  card.querySelector('.element__image').alt = 'ваша картинка';
-  card.querySelector('.element__title').textContent = addName.value;
+  const card = createCard(addUrl.value, addName.value, 'ваша картинка');
+ 
   elements.prepend(card);
   addName.value = '';
   addUrl.value = '';
@@ -139,6 +144,3 @@ closeProfileBtn.addEventListener('click', exitProfile);
 closeAddBtn.addEventListener('click', exitAdd);
 formProfile.addEventListener('submit', hanldeProfileSubmit);
 formAdd.addEventListener('submit', formSubmitHandlerAdd);
-closeImgBtn.addEventListener('click', function () {
-  popupImg.classList.remove('pop-up_opened');
-});
