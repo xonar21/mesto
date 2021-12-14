@@ -27,13 +27,14 @@ const subnameError = formProfile.querySelector('.profile_subname-error');
 
 
 const showError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}-err`);
+  console.log(errorElement);
   inputElement.classList.add('form__input_type_error');
   errorElement.textContent = errorMessage;
 };
 
 const hideError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`); 
+  const errorElement = formElement.querySelector(`.${inputElement.id}-err`); 
   inputElement.classList.remove('form__input_type_error');
   errorElement.textContent = ''; 
 };
@@ -55,20 +56,18 @@ const hasInvalidInput = (inputList) => {
     return !inputElement.validity.valid;
   });
 };
-// const inputList = Array.from(document.querySelectorAll('.form__input'));
-// console.log(hasInvalidInput(inputList));
 
 
 
-//arr[0].addEventListener('submit', hanldeProfileSubmit);
 
-const toggleButtonState = (inputList, buttonElement, formElement) => {
+
+const toggleButtonState = (inputList, buttonElement) => {
   
   if (hasInvalidInput(inputList)) {
     
     buttonElement.classList.add('form__input-error_active');
   } else {
-    //formProfile.addEventListener('submit', hanldeProfileSubmit);
+
     buttonElement.classList.remove('form__input-error_active');
   }
 };
@@ -106,9 +105,7 @@ enableValidation();
 
 
 
-// nameInput.addEventListener('input', function () {
-//   checkInputValidity(formProfile, nameInput);
-// });
+
 
 //массив карточек
 const initialCards = [
@@ -148,10 +145,10 @@ const initialCards = [
 function openPopup(popup) {
   popup.classList.add('pop-up_opened');
   const opened = document.querySelector('.pop-up_opened');
-  
+  const form = opened.querySelector('.form');
   opened.addEventListener('click', function (evt) {
     if (evt.target.classList.contains('pop-up__exit') || evt.target.classList.contains('pop-up')) {
-      
+      closePopupForm(form);
       closePopup(popup);
     }
     
@@ -160,6 +157,7 @@ function openPopup(popup) {
 
  document.addEventListener('keydown',function(evt){
    if(evt.key === 'Escape'){
+    closePopupForm(form);
     closePopup(popup);
    }
   
@@ -205,12 +203,12 @@ function openAdd() {
 }
 //закрытие попапа
 function exitProfile() {
-  closePopup(popupProfile, formProfile);
-  closePopupForm(formProfile)
+  closePopup(popupProfile);
+  closePopupForm(formProfile);
 }
 function exitAdd() {
-  closePopup(popupAdd, formAdd);
-  closePopupForm(formAdd)
+  closePopup(popupAdd);
+  closePopupForm(formAdd);
 }
 
 function exitImg() {
