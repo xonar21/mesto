@@ -11,6 +11,7 @@
     margin: 18px auto 37px;
     transition: opacity 0.2s ease-in-out;
     border-radius: 2px;
+    border: 1px solid #000000;
 }
 
 .form__button:hover {

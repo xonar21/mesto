@@ -47,22 +47,34 @@
     
     <div class="pop-up pop-up_profile_popup">
       <div class="pop-up__container">
-        <form class="form form_profile" name="edit-form">
+        <form class="form form_profile" name="edit" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
-          <input class="form__input form__input_profile_name" type="text"  name="name" value="Жак-Ив Кусто" placeholder="Введите имя" required>
-          <input class="form__input form__input_profile_subname" type="text" name="subname" value="Исследователь океана" placeholder="Введите описание" required>
-          <button class="form__button" type="submit">Сохранить</button>
+          <label class="form__field">
+            <input class="form__input form__input_profile_name" id="profile_name" minlength="2" maxlength="40" type="text"  name="name" value="Жак-Ив Кусто" placeholder="Введите имя" required>
+            <span class="form__input-error profile_name-error" ></span>
+          </label>
+          <label class="form__field">
+            <input class="form__input form__input_profile_subname" id="profile_subname" minlength="2" maxlength="200" type="text" name="subname" value="Исследователь океана" placeholder="Введите описание" required>
+            <span class="form__input-error profile_subname-error"></span>
+          </label>
+          <button class="form__button form__button-edit" type="submit">Сохранить</button>
         </form>
         <button class="pop-up__exit pop-up__exit_profile" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
     <div class="pop-up pop-up_add">
       <div class="pop-up__container">
-        <form class="form form_add" name="add-form">
+        <form class="form form_add" name="add" novalidate>
           <h2 class="form__title">Новое место</h2>
-          <input class="form__input form__input_add_name" type="text"  name="title" placeholder="Название" required>
-          <input class="form__input form__input_add_url" type="text" name="link" placeholder="Ссылка на картинку" required>
-          <button class="form__button" type="submit">Сохранить</button>
+          <label class="form__field">
+            <input class="form__input form__input_add_name" id="profile_addname" minlength="2" maxlength="30" type="text"  name="title" placeholder="Название" required>
+            <span class="form__input-error profile_addname-error" ></span>
+          </label>
+          <label class="form__field">
+            <input class="form__input form__input_add_url" id="profile_url" type="URL" name="link" placeholder="Ссылка на картинку" required>
+            <span class="form__input-error profile_url-error" ></span>
+          </label>
+          <button class="form__button form__button-add" type="submit">Сохранить</button>
         </form>
         <button class="pop-up__exit pop-up__exit_add" type="button" aria-label="Закрыть"></button>
       </div>
