@@ -21,91 +21,10 @@ const addName = formAdd.title;
 const addUrl = formAdd.link;
 const addBtn = document.querySelector('.profile__add-button');
 const elements = document.querySelector('.elements');
-
+const cardTemplate = document.querySelector('#add').content;
 const nameError = formProfile.querySelector('.profile_name-error');
 const subnameError = formProfile.querySelector('.profile_subname-error');  
-
-
-const showError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-err`);
-  console.log(errorElement);
-  inputElement.classList.add('form__input_type_error');
-  errorElement.textContent = errorMessage;
-};
-
-const hideError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-err`); 
-  inputElement.classList.remove('form__input_type_error');
-  errorElement.textContent = ''; 
-};
-
-
-
-const checkInputValidity = (formElement,inputElement) => {
-  if (!inputElement.validity.valid) {
-     showError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideError(formElement, inputElement);
-  }
-  
-};
-
-
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-
-
-
-
-
-const toggleButtonState = (inputList, buttonElement) => {
-  
-  if (hasInvalidInput(inputList)) {
-    
-    buttonElement.classList.add('form__input-error_active');
-  } else {
-
-    buttonElement.classList.remove('form__input-error_active');
-  }
-};
-
-
-
-function setEventListeners(formElement) {
-  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-  const buttonElement = formElement.querySelector('.form__button');
-  
-  
-  toggleButtonState(inputList,buttonElement);
-  inputList.forEach((inputElement) => {
-    
-  inputElement.addEventListener('input', function () {
-    checkInputValidity(formElement, inputElement);
-    toggleButtonState(inputList,buttonElement,formElement);
-  });
-}); 
-} 
-
-function enableValidation() {
-  const formList = Array.from(document.querySelectorAll('.form'));
-  
-  formList.forEach((formElement) => {
-   
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    setEventListeners(formElement);
-}); 
-}
-
-enableValidation();
-
-
-
-
+const form = document.querySelector('.form');
 
 //массив карточек
 const initialCards = [
@@ -141,28 +60,28 @@ const initialCards = [
     }
   ]; 
 
+  function closeByEscape(evt) {
+    if (evt.key === 'Escape') {
+      const openedPopup = document.querySelector('.pop-up_opened');
+      closePopup(openedPopup);
+    }
+  }
+
+
+  function closeOverlay(evt) {
+    
+    if (evt.target.classList.contains('pop-up__exit') || evt.target.classList.contains('pop-up')) {
+      closePopupForm(form);
+      closePopup(evt.target);
+    }
+  }
+
 //открытие попапа
 function openPopup(popup) {
   popup.classList.add('pop-up_opened');
   const opened = document.querySelector('.pop-up_opened');
-  const form = opened.querySelector('.form');
-  opened.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains('pop-up__exit') || evt.target.classList.contains('pop-up')) {
-      closePopupForm(form);
-      closePopup(popup);
-    }
-    
-    
-  });
-
- document.addEventListener('keydown',function(evt){
-   if(evt.key === 'Escape'){
-    closePopupForm(form);
-    closePopup(popup);
-   }
-  
-  });
-
+  opened.addEventListener('click', closeOverlay);
+  document.addEventListener('keydown', closeByEscape);
 
 }
 
@@ -182,10 +101,8 @@ function closePopupForm(form) {
 }
 
 function closePopup(popup) {
-
-  
   popup.classList.remove('pop-up_opened');
-  
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 function reset(inputElement ,errorMessage) {
@@ -203,12 +120,13 @@ function openAdd() {
 }
 //закрытие попапа
 function exitProfile() {
+  
+  
   closePopup(popupProfile);
-  closePopupForm(formProfile);
 }
 function exitAdd() {
   closePopup(popupAdd);
-  closePopupForm(formAdd);
+  
 }
 
 function exitImg() {
@@ -218,13 +136,13 @@ function exitImg() {
 
 
 //сохранение формы
-function hanldeProfileSubmit (evt) {
+function saveFormProfile (evt) {
     evt.preventDefault();
     
         
         profileName.textContent = nameInput.value;
         profileSubName.textContent = subnameInput.value;
-        
+        closePopupForm(formProfile);
         closePopup(popup);
     }
 
@@ -232,7 +150,7 @@ function hanldeProfileSubmit (evt) {
 
 //cоздание карточки
 function createCard(link, name, alt) {
-  const cardTemplate = document.querySelector('#add').content;
+  
   const userAdd = cardTemplate.querySelector('.element').cloneNode(true);
   const del = userAdd.querySelector('.element__delete-card');
   const likes = userAdd.querySelector('.element__like');
@@ -272,11 +190,12 @@ initialCards.forEach( function(item) {
 });
 
 //добавление карточек
-function formSubmitHandlerAdd (evt) {
+function addingCard (evt) {
   evt.preventDefault();
     const card = createCard(addUrl.value, addName.value, 'ваша картинка');
     elements.prepend(card);
     exitAdd();
+    closePopupForm(formAdd);
 }
 
 
@@ -288,6 +207,6 @@ editBtn.addEventListener('click', openProfilePopup);
 addBtn.addEventListener('click', openAdd);
 closeProfileBtn.addEventListener('click', exitProfile);
 closeAddBtn.addEventListener('click', exitAdd);
-formProfile.addEventListener('submit', hanldeProfileSubmit);
-formAdd.addEventListener('submit', formSubmitHandlerAdd);
+formProfile.addEventListener('submit', saveFormProfile);
+formAdd.addEventListener('submit', addingCard);
 
