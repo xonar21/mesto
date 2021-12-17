@@ -48,6 +48,8 @@ const showError = (formElement, inputElement, errorMessage) => {
   
   
   
+
+
   function setEventListeners(formElement, form) {
     const inputList = Array.from(formElement.querySelectorAll(`${form.inputSelector}`));
     const buttonElement = formElement.querySelector(`${form.submitButtonSelector}`);
@@ -82,6 +84,7 @@ const showError = (formElement, inputElement, errorMessage) => {
     submitButtonSelector: '.form__button',
     inputErrorClass: '.form__input-error',
     fieldSelector: '.form__field'
+    
   }); 
 
  
