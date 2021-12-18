@@ -121,14 +121,8 @@ function openProfilePopup() {
 function openAdd() {
   closePopupForm(formAdd);
   openPopup(popupAdd);
-  enableValidation({
-    formSelector: '.form',
-    inputSelector: '.form__input',
-    submitButtonSelector: '.form__button',
-    inputErrorClass: '.form__input-error',
-    fieldSelector: '.form__field'
-    
-  });  
+  formAddBtn.setAttribute('disabled', 'disabled');
+  formAddBtn.classList.add('form__input-error_active');
 }
 //закрытие попапа
 function exitProfile() {
