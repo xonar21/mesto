@@ -86,7 +86,7 @@ import { FormValidator } from './FormValidator.js';
     }
   }
 
-  function closeOverlay(evt) {
+  function handleClosePopup(evt) {
     
     if (evt.target.classList.contains('pop-up__exit') || evt.target.classList.contains('pop-up')) {
       
@@ -97,13 +97,13 @@ import { FormValidator } from './FormValidator.js';
 //открытие попапа
  function openPopup(popup) {
   popup.classList.add('pop-up_opened');
-  popup.addEventListener('click', closeOverlay);
+  popup.addEventListener('click', handleClosePopup);
   document.addEventListener('keydown', closeByEscape);
 }
 function closePopup(popup) {
   popup.classList.remove('pop-up_opened');
   document.removeEventListener('keydown', closeByEscape);
-  popup.removeEventListener('click', closeOverlay);
+  popup.removeEventListener('click', handleClosePopup);
 }
 function openProfilePopup() {
     formValidators.edit.resetValidation();
@@ -157,7 +157,6 @@ function addingCard (evt) {
   };
     elements.prepend(createCard(data));
     exitAdd();
-    formValidators.add.resetValidation();
 }
 
 function handleCardClick(name, link, alt) {
@@ -165,7 +164,6 @@ function handleCardClick(name, link, alt) {
   imagePopup.alt = alt;
   imagepopUptitle.textContent = name;
   openPopup(popupImg);
-  closeImgBtn.addEventListener('click', exitImg);
 }
 editBtn.addEventListener('click', openProfilePopup);
 addBtn.addEventListener('click', openAdd);
