@@ -12,7 +12,7 @@ export default class UserInfo {
           };
     }
 
-    setUserInfo(name, subname) {
+    setUserInfo({name, subname}) {
         this._name.textContent = name;
         this._subname.textContent = subname;
       }

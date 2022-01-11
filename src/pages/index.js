@@ -1,3 +1,4 @@
+import './index.css';
 
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -12,13 +13,9 @@ import {
   popupProfile,
   popupAdd,
   popupImg,
-  formProfile,
-  formAdd,
   editBtn,
   imagePopup,
   imagepopUptitle,
-  nameInput,
-  subnameInput,
   addName,
   addUrl,
   addBtn,
@@ -28,76 +25,51 @@ import {
   config,
   formValidators} from '../utils/constants.js';
 
-const popupView = new PopupWithImage(popupImg);
-const openProfile = new PopupWithForm(popupProfile);
-const openAddCard = new PopupWithForm(popupAdd);
 const userInfo = new UserInfo(info);
+const popupView = new PopupWithImage(popupImg);
+const openProfile = new PopupWithForm(popupProfile, 
+  (Data) => {
+    userInfo.setUserInfo(Data);
+    openProfile.close();
+  });
+const openAddCard = new PopupWithForm(popupAdd, 
+  () => {
+   addingCard();
+   openAddCard.close();
+});
 
-
- 
   const enableValidation = (config) => {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
-    
     formList.forEach((formElement) => {
-      
       const validator = new FormValidator(formElement, config);
-  
       const formName = formElement.getAttribute('name');
-      
-  
       formValidators[formName] = validator;
       validator.enableValidation();
     });
   };
- 
-  
-function openProfilePopup() {
-    formValidators.edit.resetValidation();
-    openProfile.open();
-    nameInput.value = userInfo.getUserInfo().name;
-    subnameInput.value = userInfo.getUserInfo().subname;
+//функция создания карточки
+const addCard = (item) => {
+  const card = new Card(item, cardTemplate, handleCardClick); 
+  return card.generateCard(); 
 }
-function openAdd() {
-  openAddCard.open();
-  formAdd.reset();
-  formValidators.add.resetValidation();
-}
-
- 
-//сохранение формы
-function saveFormProfile() {
-  userInfo.setUserInfo(nameInput.value, subnameInput.value);   
-  }
-//cоздание карточки
+//генерация карточек
 const addingCards = new Section({
   data: items,
   renderer: (item) => {
-    const card = new Card(item, cardTemplate, handleCardClick);
-   
-    const cardElement = card.generateCard();
-    addingCards.addItem(cardElement);
+    addingCards.addItem(addCard(item));
   }},
   cardListSelector
   );
   addingCards.renderItems();
- 
-
-function createCard(data) {
-  const card = new Card(data, cardTemplate, handleCardClick );
-  const cardElement = card.generateCard();
-  return cardElement;
-}
-//добавление карточек
-function addingCard (evt) {
-  evt.preventDefault();
+//добавление карточки
+function addingCard () {
   const data = {
     link: addUrl.value,
     name: addName.value,
     alt: addName.value
   };
-    elements.prepend(createCard(data));
+    elements.prepend(addCard(data));
 }
-
 
 function handleCardClick(name, link, alt) {
   imagePopup.src = link;
@@ -108,10 +80,15 @@ function handleCardClick(name, link, alt) {
 openProfile.setEventListeners();
 openAddCard.setEventListeners();
 popupView.setEventListeners();
-editBtn.addEventListener('click', openProfilePopup);
-addBtn.addEventListener('click', openAdd);
-formProfile.addEventListener('submit', saveFormProfile);
-formAdd.addEventListener('submit', addingCard);
+
+editBtn.addEventListener('click', () => {
+  openProfile.open(userInfo.getUserInfo());
+  formValidators.edit.resetValidation();
+});
+addBtn.addEventListener('click',() => {
+  openAddCard.open();
+  formValidators.add.resetValidation();
+});
 enableValidation(config);
 
 
