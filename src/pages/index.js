@@ -23,6 +23,8 @@ import {
   cardTemplate,
   info,
   config,
+  nameInput,
+  subnameInput,
   formValidators} from '../utils/constants.js';
 
 const userInfo = new UserInfo(info);
@@ -82,7 +84,10 @@ openAddCard.setEventListeners();
 popupView.setEventListeners();
 
 editBtn.addEventListener('click', () => {
-  openProfile.open(userInfo.getUserInfo());
+  const userData = userInfo.getUserInfo();
+  nameInput.value = userData.name;
+  subnameInput.value = userData.subname;
+  openProfile.open();
   formValidators.edit.resetValidation();
 });
 addBtn.addEventListener('click',() => {
