@@ -39,6 +39,13 @@ export const formAdd = document.forms.add;
 export const editBtn = document.querySelector('.profile__edit-button');
 export const imagePopup = document.querySelector('.image');
 export const imagepopUptitle = document.querySelector('.title');
+export const deletePopup = document.querySelector('.pop-up_delete');
+export const avatarPopup = document.querySelector('.pop-up_avatar');
+export const ava = document.querySelector('.profile__avatar');
+export const submitProfile = document.querySelector('.form__button-edit');
+export const submitAvatar = document.querySelector('.form__button_avatar');
+export const submitAddCard = document.querySelector('.form__button-add');
+export const submitDelete = document.querySelector('.form__button_delete');
 export const nameInput = formProfile.name;
 export const subnameInput = formProfile.subname;
 export const addName = formAdd.title;
@@ -48,7 +55,8 @@ export const elements = document.querySelector('.elements');
 export const cardTemplate = document.querySelector('#add').content;
 export const info = {
     profileName: '.profile__name',
-    profileSubName: '.profile__subname'
+    profileSubName: '.profile__subname',
+    profileAvatar: '.profile__avatar'
   };
 export const config = {
     formSelector: '.form',

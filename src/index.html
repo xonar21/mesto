@@ -17,7 +17,10 @@
     
     <main class="main">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/jak.png')%>" alt="аватар">
+        <div  class="profile__avatarShadow">
+          <img class="profile__avatar" src="<%=require('./images/jak.png')%>" alt="аватар">
+        </div>
+        
         <div class="profile__info">
           <div class="profile__info-text">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -35,7 +38,10 @@
             <img class="element__image">
             <div class="element__group">
               <h2 class="element__title"></h2>
-              <button class="element__like" type="button" aria-label="Нравится"></button>
+              <div class="element__group-counts">
+                <button class="element__like" type="button" aria-label="Нравится"></button>
+                <p class="element__like-count"></p>
+              </div>
             </div>
           </div>
         </template>
@@ -77,6 +83,31 @@
           <button class="form__button form__button-add" type="submit">Сохранить</button>
         </form>
         <button class="pop-up__exit pop-up__exit_add" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
+    <div class="pop-up pop-up_delete">
+      <div class="pop-up__container">
+        <form class="form form_delete" name="delete" novalidate>
+          <h2 class="form__title form__title_delete">Вы уверены?</h2>
+          
+          <button class="form__button form__button_delete" type="submit">Да</button>
+        </form>
+        <button class="pop-up__exit pop-up__exit_delete" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
+    <div class="pop-up pop-up_avatar">
+      <div class="pop-up__container">
+        <form class="form form_avatar" name="delete" novalidate>
+          <h2 class="form__title form__title_delete">Обновить аватар</h2>
+          <label class="form__field">
+            <input class="form__input form__input_add_url" id="form__input-error_url" type="URL" name="link" placeholder="Ссылка на картинку" required>
+            <span class="form__input-error form__input-error_url form__input-error_url-err" ></span>
+          </label>
+          <button class="form__button form__button_avatar" type="submit">Сохранить</button>
+        </form>
+        <button class="pop-up__exit pop-up__exit_delete" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
 
