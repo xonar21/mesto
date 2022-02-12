@@ -53,11 +53,10 @@ const popupView = new PopupWithImage(popupImg);
 //удаление
 const openDeleteCard = new PopupDelete(
   deletePopup,
-  (card) => { delcard(card); });
+  (card) => { delCard(card); });
 
 //создание карточки
-const addCard = function(item) {
- 
+function createCard(item) {
   const card = new Card(
     {
       data: item,
@@ -70,9 +69,9 @@ const addCard = function(item) {
 
   );
   const cardElement = card.generateCard(userInfo.getUserID());
-
-  cardsList.addItem(cardElement);
-};
+  return cardElement // возваращаете готовую карточку
+}
+  
 
 
 // лайки
@@ -89,28 +88,27 @@ const likeCard = (card) => {
   likeFunc(id)
     .then((res) => {
       card.setLikes(res.likes);
+      card.setLikeGroup(user);
     })
     .catch((err) => {
       console.log(`Невозможно ${action} лайк. Ошибка ${err}.`);
       card.setLikes(!likeState ? [{ _id: user }] : []);
-    })
-    .finally(() => {
-      card.setLikeGroup(user);
     });
 }
 
 //удаление карточки
-const delcard = (card) => {
+const delCard = (card) => {
   submitDelete.textContent = 'Сохранение...';
-  api._delCardFromServer(card.getCardId())
+  api.delCardFromServer(card.getCardId())
     .then((res) => {
       card.del();
+      openDeleteCard.close();
     })
     .catch((err) => {
       console.log(`Невозможно удалить карточку. Ошибка ${err}.`);
     })
     .finally(() => {
-      openDeleteCard.close(); 
+      
       submitDelete.textContent = 'Сохранить';
     });
   
@@ -121,24 +119,25 @@ const openAddCard = new PopupWithForm(
   popupAdd, 
   (item) => {
     submitAddCard.textContent = 'Сохранение...';
-    api._postCard({name: item.title, link: item.link})
+    api.postCard({name: item.title, link: item.link})
       .then((res) => {
         
-        addCard({
+        
+        cardsList.addItem(createCard({
           name: res.name, 
           link: res.link, 
           likes: res.likes, 
           owner: res.owner._id,
           id: res._id
-        })
+        }));
         
+        openAddCard.close();
        
       })
       .catch((err) => {
         console.log(`Невозможно сохранить карточку на сервере. Ошибка ${err}.`);
       })
       .finally(() => {
-        openAddCard.close(); 
         submitAddCard.textContent = 'Сохранить';
       });
   }
@@ -157,12 +156,12 @@ function saveAvatar(data) {
       .then((res) => {
         userInfo.setUserAvatar(res.avatar);
         userInfo.setUserId(res._id);
+        openAvatar.close();
       })
       .catch((err) => {
         console.log(`Невозможно обновить аватар на сервере. ${err}.`);
       })
       .finally(() => {
-        openAvatar.close();
         submitAvatar.textContent = 'Сохранить';
       });
   }
@@ -173,17 +172,17 @@ const openProfile = new PopupWithForm(popupProfile,
 
 function saveUserProfileServer(Data) {
   submitProfile.textContent = 'Сохранение...';
-  api._pathEditProfile(Data)
+  api.pathEditProfile(Data)
     .then((res) => {
       console.log(res._id)
       userInfo.setUserInfo({ name: res.name, subname: res.about });
       userInfo.setUserId(res._id);
+      openProfile.close();
     })
     .catch((err) => {
       console.log(`Невозможно обновить профиль пользователя. ${err}.`);
     })
     .finally(() => {
-      openProfile.close();
       submitProfile.textContent = 'Сохранить';
     });
 }
@@ -236,43 +235,31 @@ enableValidation(config);
 
 
 //данные с сервера
-api._getUserInformation()
-  .then((res) => {
-    
-    userInfo.setUserInfo({name: res.name, subname: res.about});
-    userInfo.setUserAvatar(res.avatar);
-    userInfo.setUserId(res._id);
-  })
-  .catch((err) => {
-    console.log(`Информация с сервера не получена. ${err}.`);
-  })
-  .finally(() => {
-    api._getCardsFromServer()
-      .then((res) => {
-       
-        console.log('Информация о карточках получена');
-       
-        cardsItem = res.map(item => {
-          return {
-            name: item.name,
-            likes: item.likes,
-            link: item.link,
-            id: item._id,
-            owner: item.owner._id
-          }
-        });
-      })
-      .catch((err) => {
-        console.log(`Информация о карточках не получена.${err}.`);
-      })
-      .finally(() => {
-        
-        cardsList = new Section(
-          { data: cardsItem, renderer: (item) => addCard(item) }, 
-          cardListSelector);
-        cardsList.renderItems();
+  Promise.all([api.getUserInformation(), api.getCardsFromServer()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo({name: userData.name, subname: userData.about});
+    userInfo.setUserAvatar(userData.avatar);
+    userInfo.setUserId(userData._id);
 
-        });
+    cardsItem = cards.map(item => {
+      return {
+        name: item.name,
+        likes: item.likes,
+        link: item.link,
+        id: item._id,
+        owner: item.owner._id
+        }
+    });
+
+    cardsList = new Section(
+      { data: cardsItem, renderer: (item) => cardsList.addItem(createCard(item))}, 
+      cardListSelector);
+      cardsList.renderItems();
+
+      
+  })
+  .catch(err => {
+    console.log(`Информация с сервера не получена.${err}.`);
   });
 
  

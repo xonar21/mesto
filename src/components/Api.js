@@ -9,7 +9,7 @@ export default class Api {
         //return Promise.reject(res.status);
       }
     
-      _getUserInformation() {
+      getUserInformation() {
         return fetch(`${this._baseUrl.baseUrl}/users/me`, {
             
           method: 'GET',
@@ -20,7 +20,7 @@ export default class Api {
         .then(res => this._handleResponse(res))
       }
 
-      _getCardsFromServer() {
+      getCardsFromServer() {
         return fetch(`${this._baseUrl.baseUrl}/cards`, {
             
             method: 'GET',
@@ -30,7 +30,7 @@ export default class Api {
           })
           .then(res => this._handleResponse(res))
       }
-      _pathEditProfile(info) {
+      pathEditProfile(info) {
         return fetch(`${this._baseUrl.baseUrl}/users/me`, {
             method: 'PATCH',
             headers: {
@@ -46,7 +46,7 @@ export default class Api {
           )
       }
 
-      _postCard({name, link}) {
+      postCard({name, link}) {
           
         return fetch(`${this._baseUrl.baseUrl}/cards`, {
             method: 'POST',
@@ -63,7 +63,7 @@ export default class Api {
           
       }
 
-      _delCardFromServer(id) {
+      delCardFromServer(id) {
         return fetch(`${this._baseUrl.baseUrl}/cards/${id}`, {
           method: 'DELETE',
           headers: {

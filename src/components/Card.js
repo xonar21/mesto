@@ -1,5 +1,5 @@
 export default class Card {
-    constructor({data, del, handleLike}, cardSelector, handleCardClick, deletePopup) {
+    constructor({data, del, handleLike}, cardTemplate, handleCardClick, deletePopup) {
       this._link = data.link;
       this._name = data.name;
       this._alt = data.name;
@@ -9,7 +9,7 @@ export default class Card {
       this._id = data.id;
       this._delete = del;
       this._like = handleLike;
-      this.cardSelector = cardSelector;
+      this.cardTemplate = cardTemplate;
       this._handleCardClick = handleCardClick;
       this._deletePopup = deletePopup;
       
@@ -17,7 +17,7 @@ export default class Card {
     }
    
     _getTemplate() {
-      const cardElement = this.cardSelector
+      const cardElement = this.cardTemplate
       .querySelector('.element')
       .cloneNode(true);
       this._cardImage = cardElement.querySelector('.element__image');
@@ -33,9 +33,6 @@ export default class Card {
       });
       this._cardDelete.addEventListener('click', () => this._delete(this));
       this._cardLike.addEventListener('click', () => this._like(this));
-      this._setLikesHandler();
-      //console.log(this)
-      //this._setDeleteHandler();
       
     }
     generateCard(userId) {
@@ -57,13 +54,6 @@ export default class Card {
     }
 
     getCardId() { return this._id; };
-    
-    _setLikesHandler() {
-      this._cardLike.addEventListener('click', () => {
-        this._cardLike.classList.toggle('element__like_active');
-      });
-    }
-
 
     _setLikeButton() {
       this._cardLike.classList.add('element__like_active');
@@ -82,25 +72,5 @@ export default class Card {
       this._cardLikeCount.textContent = String(this._likes.length);
       if (this._likes.length) this._setLikeButton();
         else this._unsetLikeButton();
-    }
-
-    
-
-    // _setDeleteHandler() {
-    //   this._cardDelete.addEventListener('click', () => {
-    //     //console.log(this._element)
-    //     //this._delete(this)
-    //     //this._delete(this);
-    //     //this._deletePopup.open();
-    //     // this._deletePopup._popupSelector.addEventListener('submit',() => {
-          
-    //     //   const listItem = this._element;
-    //     //   //listItem.remove();
-    //     //   this._deletePopup.close()
-    //     // });
-    //   });
-    // }
-
-    
-    
+    }  
   }
